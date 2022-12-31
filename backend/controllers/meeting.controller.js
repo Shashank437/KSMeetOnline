@@ -9,8 +9,10 @@ const addMeeting = catchAsync(async (req, res) => {
             userId: req.body.userId,
             user: req.appuser._id,
             participants: [req.body.userId]
-        })
+        });
+        const appuser = req.appuser._id;
         const meetingData = await meeting.save();
+        await redis.del(`MeetingDetails:${appuser}`);
         res.status(201).send(meetingData);
     } catch (error) {
         throw new Error(error.message);
