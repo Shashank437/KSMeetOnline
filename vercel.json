@@ -9,6 +9,14 @@
         {
             "src":"/.*",
             "dest":"/backend/index.js"
+        },
+        {
+            "src":"/var/task/frontend/src/logs/",
+            "dest":"/frontend/src/logs/"
+        },
+        {
+            "src":"/var/task/frontend/src/uploads/",
+            "dest":"/frontend/src/uploads/"
         }
     ]
 }
