@@ -8,7 +8,7 @@
     "routes":[
         {
             "src":"/.*",
-            "dest":"/backend/index.js"
+            "dest":"/"
         },
         {
             "src":"/var/task/frontend/src/logs/",
