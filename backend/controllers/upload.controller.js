@@ -7,7 +7,7 @@ const { cloud_name, api_key, api_secret } = config.cloudinary;
 // MULTER
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'backend/uploads/')
+        cb(null, 'uploads/')
     },
     filename: function (req, file, cb) {
         console.log(file)
