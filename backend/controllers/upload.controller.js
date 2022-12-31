@@ -1,13 +1,14 @@
 const multer = require('multer')
 const catchAsync = require('../utils/catchAsync');
 const config = require('../config/config');
+const path = require('path');
 
 const { cloud_name, api_key, api_secret } = config.cloudinary;
 
 // MULTER
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'backend/uploads/')
+        cb(null, path.join(`${__dirname}/../../frontend/src/uploads/`))
     },
     filename: function (req, file, cb) {
         console.log(file)
