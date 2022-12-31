@@ -1,10 +1,9 @@
 node_modules
-
 /frontend/node_modules
-
 /uploads/*
 /dist
-
 package-lock.json
-
+/frontend/package-lock.json
 .env
+frontend/.DS_Store
+backend/logs/*
