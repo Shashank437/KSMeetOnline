@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
 const httpStatus = require('http-status');
@@ -18,12 +19,25 @@ const errorConverter = (err, req, res, next) => {
 const errorHandler = (err, req, res, next) => {
   let { statusCode, message } = err;
   res.locals.errorMessage = err.message;
+
   const response = {
     code: statusCode,
     message,
     ...({ stack: err.stack }),
   };
+
   logger.error(err);
+  var err_logger = fs.createWriteStream(path.join(`${process.cwd()}/../logs/log.txt`), {
+    flags: 'a'
+  });
+  var writeError = (line) => err_logger.write(`${line}\n`);
+  var now = new Date();
+  const iso = now.toISOString();
+  var myDate = new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
+  writeError(iso);
+  writeError(myDate);
+  writeError(err.stack+'\n');
+
   if (err.statusCode === 404 && response.message === 'Not found 404') {
     res.sendFile(path.join(`${__dirname}/../../frontend/src/codePen404.html`));
   } else if(err.statusCode === 401) {
