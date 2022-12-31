@@ -3,7 +3,6 @@ const path = require('path');
 const userController = require('../controllers/user.controller');
 const { appUserAuth } = require('../middlewares/auth');
 const router = express.Router();
-const fs = require('fs');
 
 router
   .route('/')
@@ -14,12 +13,7 @@ router
 router
   .route('/test')
   .get((req, res) => {
-    var err_logger = fs.createWriteStream(path.join(`${__dirname}/../../uploads/s.txt`), {
-      flags: 'a'
-    });
-    var writeError = (line) => err_logger.write(`${line}\n`);
-    writeError('hello');
-    res.send({path: path.join(`${__dirname}/../../uploads`)});
+    res.sendFile(path.join(__dirname, '/../../frontend/src/logs/log.txt'));
   }); 
   
 router

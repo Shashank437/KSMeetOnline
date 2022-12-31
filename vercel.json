@@ -2,19 +2,13 @@
     "builds":[
         {
             "src":"./backend/index.js",
-            "use":"@vercel/node",
-            "config":{
-                "serverFiles":[
-                    "backend/**",
-                    "/uploads/**"
-                ]
-            }
+            "use":"@vercel/node"
         }
     ],
     "routes":[
         {
             "src":"/.*",
-            "dest":"/"
+            "dest":"/backend/index.js"
         }
     ]
 }
