@@ -11,6 +11,12 @@ router
   });
 
 router
+  .route('/test')
+  .get((req, res) => {
+    res.send({path: path.join(`${__dirname}/../../uploads`)});
+  }); 
+  
+router
   .route('/profile')
   .get(appUserAuth(), userController.getProfile);
 
