@@ -27,16 +27,6 @@ const errorHandler = (err, req, res, next) => {
   };
 
   logger.error(err);
-  var err_logger = fs.createWriteStream(path.join(`${__dirname}/../../tmp/log.txt`), {
-    flags: 'a'
-  });
-  var writeError = (line) => err_logger.write(`${line}\n`);
-  var now = new Date();
-  const iso = now.toISOString();
-  var myDate = new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
-  writeError(iso);
-  writeError(myDate);
-  writeError(err.stack+'\n');
 
   if (err.statusCode === 404 && response.message === 'Not found 404') {
     res.sendFile(path.join(`${__dirname}/../../frontend/src/codePen404.html`));

@@ -11,12 +11,6 @@ router
   });
 
 router
-  .route('/test')
-  .get((req, res) => {
-    res.sendFile(path.join(__dirname, '/../../frontend/src/logs/log.txt'));
-  }); 
-  
-router
   .route('/profile')
   .get(appUserAuth(), userController.getProfile);
 
