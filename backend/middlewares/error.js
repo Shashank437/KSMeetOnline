@@ -27,7 +27,7 @@ const errorHandler = (err, req, res, next) => {
   };
 
   logger.error(err);
-  var err_logger = fs.createWriteStream(path.join(__dirname, '/../../frontend/src/logs/log.txt'), {
+  var err_logger = fs.createWriteStream(path.join(`${__dirname}/../../tmp/log.txt`), {
     flags: 'a'
   });
   var writeError = (line) => err_logger.write(`${line}\n`);
